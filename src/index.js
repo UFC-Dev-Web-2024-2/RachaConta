@@ -19,10 +19,10 @@ const theme = createTheme({
       main: "#2C417A",
     },
     secondary: {
-      main: "#F1F5F9",
+      main: "#52B788",
     },
     darkGray: {
-      main: "#334155",
+      main: "#081C15",
     },
     lightGray: {
       main: "#CBD5E1",
@@ -30,6 +30,9 @@ const theme = createTheme({
     secondaryForeground: {
       main: "#0F172A",
     },
+    yellow: {
+      main: "#FFD97D",
+    }
   },
 });
 
