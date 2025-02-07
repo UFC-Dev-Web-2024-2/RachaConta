@@ -1,10 +1,8 @@
-// FriendsList.js
 import React from 'react';
 import { Box, Typography, Button, Card, CardActionArea, Avatar } from '@mui/material';
 import { styled } from '@mui/system';
 
 const FriendCard = styled(Card)(({ theme }) => ({
-  border: `1px solid ${theme.palette.primary.main}`,
   marginBottom: theme.spacing(2)
 }));
 
