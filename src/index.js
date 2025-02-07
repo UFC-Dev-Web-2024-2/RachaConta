@@ -16,7 +16,7 @@ const theme = createTheme({
       default: "#D8F3DC",
     },
     primary: {
-      main: "#2C417A",
+      main: "#081C15",
     },
     secondary: {
       main: "#52B788",
@@ -32,6 +32,12 @@ const theme = createTheme({
     },
     yellow: {
       main: "#FFD97D",
+    },
+    warning: {
+      main: "#FF9914",
+    },
+    success: {
+      main: "#29BF12",
     }
   },
 });
