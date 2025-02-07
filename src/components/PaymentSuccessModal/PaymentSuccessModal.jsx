@@ -1,13 +1,21 @@
 import React from 'react';
 import { Modal, Box, Typography, Button } from '@mui/material';
 import ProgressIndicator from '../ProgressIndicator/ProgressIndicator';
+import { useNavigate } from 'react-router-dom';
 
 const PaymentSuccessModal = ({ open, account, onClose }) => {
+  const navigate = useNavigate();
+
   if (!account) return null;
 
   const total = account.participants.length;
   const paidCount = account.participants.filter(p => p.paid).length;
   const percentage = (paidCount / total) * 100;
+
+  const handleBack = () => {
+    onClose()
+    navigate("/accounts")
+  }
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -32,7 +40,7 @@ const PaymentSuccessModal = ({ open, account, onClose }) => {
         <Typography variant="body1" sx={{ mt: 2, mb: 2 }}>
           Conta paga com sucesso🎊
         </Typography>
-        <Button variant="contained" onClick={onClose}>
+        <Button variant="contained" onClick={handleBack}>
           Ok
         </Button>
       </Box>
