@@ -6,19 +6,30 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useNavigate } from 'react-router-dom';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Header = ({
 	user,
-	avatarBgColor = 'yellow.main',
-	textColor = 'darkGray.main'
+	avatarBgColor = '#f50057',
+	textColor = 'white'
 }) => {
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const firstNameInitial = user.name ? user.name.split(' ')[0][0] : '';
 
 	const handleLogout = () => {
 		navigate('/');
+	};
+
+	const currentTab = (location.pathname === '/friends' || (location.pathname === '/accounts' || location.pathname.toString().includes('/accounts')))
+		? location.pathname
+		: false;
+
+	const handleTabChange = (event, newValue) => {
+		navigate(newValue);
 	};
 
 	return (
@@ -38,8 +49,19 @@ const Header = ({
 					</Box>
 				</Box>
 
-				<Box sx={{ display: 'flex', alignItems: 'center' }}>
+				<Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
+					<Tabs
+						value={currentTab}
+						onChange={handleTabChange}
+						textColor="inherit"
+						indicatorColor="primary"
+					>
+						<Tab label="Meus Amigos" value="/friends" />
+						<Tab label="Minhas Contas" value="/accounts" />
+					</Tabs>
+				</Box>
 
+				<Box sx={{ display: 'flex', alignItems: 'center' }}>
 					<Button
 						variant="contained"
 						color="darkGray"
