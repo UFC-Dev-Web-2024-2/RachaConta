@@ -4,14 +4,12 @@ import Header from '../Header/Header';
 import FriendsList from '../FriendsList/FriendsList';
 import AddFriend from '../AddFriend/AddFriend';
 import FeedbackModal from '../FeedbackModal/FeedbackModal';
+import { AppContext } from '../../AppContext';
 
 const ManageFriends = () => {
-    const user = { name: 'André Torquato', username: 'andre' };
+    const { state, } = React.useContext(AppContext);
     const [view, setView] = useState('list');
-    const [friends, setFriends] = useState([
-        { name: 'Andre', username: 'andre01', avatarBgColor: '#3f51b5' },
-        { name: 'Matheus', username: 'matheus01', avatarBgColor: '#f50057' }
-    ]);
+    const [friends, setFriends] = useState(state.friends);
     const [modalOpen, setModalOpen] = useState(false);
 
     const handleAddFriendClick = () => {
@@ -39,7 +37,7 @@ const ManageFriends = () => {
 
     return (
         <>
-            <Header user={user} />
+            <Header user={state.user} />
             <Box sx={{ p: 2, mt: 12 , maxWidth: 600, mx: 'auto' }}>
                 {view === 'list' && (
                     <FriendsList friends={friends} onAddFriendClick={handleAddFriendClick} />
