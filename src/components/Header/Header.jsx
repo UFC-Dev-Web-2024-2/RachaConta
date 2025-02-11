@@ -18,7 +18,7 @@ const Header = ({
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	const firstNameInitial = user?.name ? user.name.split(' ')[0][0] : '';
+	const firstNameInitial = user.name ? user.name.split(' ')[0][0] : '';
 
 	const handleLogout = () => {
 		navigate('/');
@@ -33,51 +33,21 @@ const Header = ({
 	};
 
 	return (
-    <AppBar position="fixed">
-      <Toolbar
-        sx={{
-          display: "flex",
-          justifyContent: centered ? "center" : "space-between",
-          width: "100%",
-          bgcolor: "secondary.main",
-        }}
-      >
-		{isRegister && <Box sx={{ width: "100px" }} />}
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          {user ? (
-            <>
-              <Avatar sx={{ bgcolor: avatarBgColor, mr: 1, color: textColor }}>
-                {firstNameInitial}
-              </Avatar>
-              <Box sx={{ display: "flex", flexDirection: "column", mr: 2 }}>
-                <Typography variant="body1" sx={{ color: textColor }}>
-                  {user.name}
-                </Typography>
-                <Typography
-                  variant="caption"
-                  sx={{ color: textColor, fontWeight: "bold" }}
-                >
-                  @{user.username}
-                </Typography>
-              </Box>
-            </>
-          ) : (
-            <>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  width: "100%",
-                }}
-              >
-                <Typography variant="body1" sx={{ color: textColor, fontSize: "2rem", fontWeight: "bold" }}>
-                  {pageTitle}
-                </Typography>
-              </Box>
-            </>
-          )}
-        </Box>
+		<AppBar position="fixed">
+			<Toolbar sx={{ display: 'flex', justifyContent: 'space-between', width: '100%', bgcolor: 'secondary.main' }}>
+				<Box sx={{ display: 'flex', alignItems: 'center' }}>
+					<Avatar sx={{ bgcolor: avatarBgColor, mr: 1, color: textColor }}>
+						{firstNameInitial}
+					</Avatar>
+					<Box sx={{ display: 'flex', flexDirection: 'column', mr: 2 }}>
+						<Typography variant="body1" sx={{ color: textColor }}>
+							{user.name}
+						</Typography>
+						<Typography variant="caption" sx={{ color: textColor, fontWeight: 'bold' }}>
+							@{user.username}
+						</Typography>
+					</Box>
+				</Box>
 
 				<Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
 					<Tabs

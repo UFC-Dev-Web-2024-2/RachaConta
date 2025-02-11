@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthForm from '../components/AuthForm/AuthForm';
-import Header from '../components/Header/Header';
+import Header from '../components/HeaderLogout/HeaderLogout';
 
 const Login = () => {
     return (
