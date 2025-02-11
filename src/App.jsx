@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AppProvider } from './AppContext';
-import Login from './components/Auth/Auth';
+import Login from './pages/Login';
+import Register from './pages/Register';
 import ManageFriends from './components/Friends/ManagerFriends';
 import AccountList from './components/AccountList/AccountList';
 import AccountForm from './components/AccountForm/AccountForm';
@@ -26,6 +27,7 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/friends" element={<ManageFriends />} />
           <Route path="/accounts" element={<AccountList />} />
           <Route path="/accounts/new" element={<AccountForm />} />
