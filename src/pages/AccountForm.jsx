@@ -2,9 +2,9 @@
 import React, { useContext, useState } from 'react';
 import { Box, Typography, TextField, Button, Card, CardActionArea, Avatar, InputAdornment } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
-import { AppContext } from '../../AppContext';
+import { AppContext } from '../AppContext';
 import { useNavigate } from 'react-router-dom';
-import Header from '../Header/Header';
+import Header from '../components/Header/Header';
 
 const AccountForm = () => {
   const { state, addAccount } = useContext(AppContext);

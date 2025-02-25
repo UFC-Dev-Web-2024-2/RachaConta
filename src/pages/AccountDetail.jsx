@@ -1,9 +1,9 @@
 import React from 'react';
-import { AppContext } from '../../AppContext';
+import { AppContext } from '../AppContext';
 import { Box, Typography, Button, Card, Avatar } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import ProgressIndicator from '../ProgressIndicator/ProgressIndicator';
-import Header from '../Header/Header';
+import ProgressIndicator from '../components/ProgressIndicator/ProgressIndicator';
+import Header from '../components/Header/Header';
 
 const AccountDetails = ({ onPaymentSuccess }) => {
   const { id } = useParams();

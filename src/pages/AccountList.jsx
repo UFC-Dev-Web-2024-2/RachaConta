@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import { AppContext } from '../../AppContext';
+import { AppContext } from '../AppContext';
 import { Box, Typography, Button, Card, CardActionArea, Avatar, Badge } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
 import { useNavigate } from 'react-router-dom';
-import ProgressIndicator from '../ProgressIndicator/ProgressIndicator';
-import Header from '../Header/Header';
+import ProgressIndicator from '../components/ProgressIndicator/ProgressIndicator';
+import Header from '../components/Header/Header';
 
 const AccountList = () => {
   const { state } = useContext(AppContext);

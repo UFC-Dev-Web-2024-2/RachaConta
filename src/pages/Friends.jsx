@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
-import Header from '../Header/Header';
-import FriendsList from '../FriendsList/FriendsList';
-import AddFriend from '../AddFriend/AddFriend';
-import FeedbackModal from '../FeedbackModal/FeedbackModal';
-import { AppContext } from '../../AppContext';
+import Header from '../components/Header/Header';
+import FriendsList from '../components/FriendsList/FriendsList';
+import AddFriend from '../components/AddFriend/AddFriend';
+import FeedbackModal from '../components/FeedbackModal/FeedbackModal';
+import { AppContext } from '../AppContext';
 
-const ManageFriends = () => {
+const Friends = () => {
     const { state, } = React.useContext(AppContext);
     const [view, setView] = useState('list');
     const [friends, setFriends] = useState(state.friends);
@@ -51,4 +51,4 @@ const ManageFriends = () => {
     );
 };
 
-export default ManageFriends;
+export default Friends;

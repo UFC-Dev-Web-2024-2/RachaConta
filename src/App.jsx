@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { AppProvider } from './AppContext';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import ManageFriends from './components/Friends/ManagerFriends';
-import AccountList from './components/AccountList/AccountList';
-import AccountForm from './components/AccountForm/AccountForm';
-import AccountDetails from './components/AccountDetail/AccountDetail';
+import Friends from './pages/Friends';
+import AccountList from './pages/AccountList';
+import AccountForm from './pages/AccountForm';
+import AccountDetails from './pages/AccountDetail';
 import PaymentSuccessModal from './components/PaymentSuccessModal/PaymentSuccessModal';
 
 const App = () => {
@@ -28,7 +28,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/friends" element={<ManageFriends />} />
+          <Route path="/friends" element={<Friends />} />
           <Route path="/accounts" element={<AccountList />} />
           <Route path="/accounts/new" element={<AccountForm />} />
           <Route path="/accounts/:id" element={<AccountDetails onPaymentSuccess={handlePaymentSuccess} />} />
