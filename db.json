@@ -1,0 +1,70 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Elixandre",
+      "username": "eliquisxan",
+      "password": "senha123",
+      "avatarBgColor": "#9c27b0"
+    }
+  ],
+  "friends": [
+    {
+      "id": "1",
+      "userId": 1,
+      "name": "Andre",
+      "username": "andre1",
+      "avatarBgColor": "#3f51b5"
+    },
+    {
+      "id": "2",
+      "userId": 1,
+      "name": "Matheus",
+      "username": "matheus2",
+      "avatarBgColor": "#f50057"
+    }
+  ],
+  "accounts": [
+    {
+      "id": "1",
+      "userId": 1,
+      "title": "Churrasco de Sexta",
+      "total": 150,
+      "participants": [
+        {
+          "username": "eliquisxan",
+          "name": "Elixandre",
+          "avatarBgColor": "#9c27b0",
+          "paid": true
+        },
+        {
+          "username": "andre1",
+          "name": "Andre",
+          "avatarBgColor": "#3f51b5",
+          "paid": false
+        }
+      ]
+    },
+    {
+      "id": "1740536642335",
+      "title": "sdasd",
+      "total": 21312,
+      "participants": [
+        {
+          "username": "eliquisxan",
+          "name": "Elixandre",
+          "avatarBgColor": "#9c27b0",
+          "paid": true,
+          "paymentDate": "2025-02-26T02:24:04.135Z"
+        },
+        {
+          "username": "andre1",
+          "name": "Andre",
+          "avatarBgColor": "#3f51b5",
+          "paid": false
+        }
+      ],
+      "userId": "1"
+    }
+  ]
+}
