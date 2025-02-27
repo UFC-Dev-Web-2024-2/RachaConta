@@ -7,7 +7,9 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.4.1",
     "@mui/material": "^6.4.1",
+    "axios": "^1.7.9",
     "cra-template": "1.2.0",
+    "firebase": "^11.3.1",
     "RachaConta": "file:",
     "rachacontapp": "file:",
     "react": "^19.0.0",
@@ -17,6 +19,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "json-server --watch db.json --port 3002",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
