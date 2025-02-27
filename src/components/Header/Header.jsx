@@ -18,7 +18,7 @@ const Header = ({
 	const navigate = useNavigate();
 	const location = useLocation();
 
-	const firstNameInitial = user.name ? user.name.split(' ')[0][0] : '';
+	const firstNameInitial = user?.name ? user?.name?.split(' ')[0][0] : '';
 
 	const handleLogout = () => {
 		navigate('/');
@@ -41,10 +41,10 @@ const Header = ({
 					</Avatar>
 					<Box sx={{ display: 'flex', flexDirection: 'column', mr: 2 }}>
 						<Typography variant="body1" sx={{ color: textColor }}>
-							{user.name}
+							{user?.name}
 						</Typography>
 						<Typography variant="caption" sx={{ color: textColor, fontWeight: 'bold' }}>
-							@{user.username}
+							@{user?.username}
 						</Typography>
 					</Box>
 				</Box>
