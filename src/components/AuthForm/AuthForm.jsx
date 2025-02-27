@@ -1,11 +1,9 @@
 import React from "react";
 import { Box, TextField, Button, Typography, Link } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
-const AuthForm = ({ title, fields, buttonText, linkText, linkHref, isLogin }) => {
-  const navigate = useNavigate();
-  const handleRedirect = () => {
-    navigate("/friends")
+const AuthForm = ({ title, fields, buttonText, linkText, linkHref, isLogin, submit }) => {
+  const handleClick = () => {
+    submit({ username: "eliquisxan", password: "senha123" });
   }
   return (
     <Box
@@ -86,7 +84,7 @@ const AuthForm = ({ title, fields, buttonText, linkText, linkHref, isLogin }) =>
             "&:hover": { bgcolor: "gray" },
             mb: 2,
           }}
-          onClick={handleRedirect}
+          onClick={handleClick}
         >
           {buttonText}
         </Button>
