@@ -1,44 +1,101 @@
-// AppContext.js
 import React, { createContext, useState, useEffect } from 'react';
+import { api } from './api';
 
 export const AppContext = createContext();
 
-const initialState = {
-  user: { name: "Elixandre", username: "eliquisxan" },
-  friends: [
-    { name: 'Andre', username: 'andre1', avatarBgColor: '#3f51b5' },
-    { name: 'Matheus', username: 'matheus2', avatarBgColor: '#f50057' },
-    { name: 'Rodrigo', username: 'rodrigao', avatarBgColor: '#ff9800' }
-  ],
-  accounts: []
-};
-
 export const AppProvider = ({ children }) => {
-  const [state, setState] = useState(() => {
-    const localData = localStorage.getItem('appState');
-    return localData ? JSON.parse(localData) : initialState;
+  const [state, setState] = useState({
+    user: null,
+    friends: [],
+    accounts: [],
+    isLoading: false,
+    error: null
   });
 
   useEffect(() => {
-    localStorage.setItem('appState', JSON.stringify(state));
-  }, [state]);
+    const loadInitialData = async () => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        setState(prev => ({ ...prev, isLoading: true }));
+        try {
+          const [friends, accounts] = await Promise.all([
+            api.getFriends(user.id),
+            api.getAccounts(user.id)
+          ]);
+          setState(prev => ({ ...prev, user, friends, accounts, isLoading: false }));
+        } catch (error) {
+          setState(prev => ({ ...prev, error, isLoading: false }));
+        }
+      }
+    };
+    loadInitialData();
+  }, []);
 
-  const addAccount = (account) => {
-    setState(prev => ({
-      ...prev,
-      accounts: [...prev.accounts, account]
-    }));
+  const login = async (username, password) => {
+    setState(prev => ({ ...prev, isLoading: true }));
+    try {
+      const user = await api.getUser(username, password);
+      // testar com json server
+      // const user = await api.login(username, password);
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
+        const [friends, accounts] = await Promise.all([
+          api.getFriends(user.id),
+          api.getAccounts(user.id)
+        ]);
+        setState(prev => ({ ...prev, user, friends, accounts, isLoading: false }));
+        return true;
+      }
+      return false;
+    } catch (error) {
+      setState(prev => ({ ...prev, error, isLoading: false }));
+      return false;
+    }
   };
 
-  const updateAccount = (updatedAccount) => {
-    setState(prev => ({
-      ...prev,
-      accounts: prev.accounts.map(acc => acc.id === updatedAccount.id ? updatedAccount : acc)
-    }));
+  const register = async (userData) => {
+    setState(prev => ({ ...prev, isLoading: true }));
+    try {
+      const newUser = await api.register(userData);
+      localStorage.setItem('user', JSON.stringify(newUser));
+      setState(prev => ({ ...prev, user: newUser, isLoading: false }));
+      return true;
+    } catch (error) {
+      setState(prev => ({ ...prev, error, isLoading: false }));
+      return false;
+    }
+  };
+
+  const addAccount = async (account) => {
+    setState(prev => ({ ...prev, isLoading: true }));
+    try {
+      const newAccount = await api.addAccount({ ...account, userId: state.user.id });
+      setState(prev => ({
+        ...prev,
+        accounts: [...prev.accounts, newAccount],
+        isLoading: false
+      }));
+    } catch (error) {
+      setState(prev => ({ ...prev, error, isLoading: false }));
+    }
+  };
+
+  const updateAccount = async (updatedAccount) => {
+    setState(prev => ({ ...prev, isLoading: true }));
+    try {
+      await api.updateAccount(updatedAccount.id, updatedAccount);
+      setState(prev => ({
+        ...prev,
+        accounts: prev.accounts.map(acc => acc.id === updatedAccount.id ? updatedAccount : acc),
+        isLoading: false
+      }));
+    } catch (error) {
+      setState(prev => ({ ...prev, error, isLoading: false }));
+    }
   };
 
   return (
-    <AppContext.Provider value={{ state, addAccount, updateAccount }}>
+    <AppContext.Provider value={{ state, login, register, addAccount, updateAccount }}>
       {children}
     </AppContext.Provider>
   );
